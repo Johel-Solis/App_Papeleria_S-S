@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace app_papeleriaSyS.Product.Model
+namespace app_papeleriaSyS.Products.Model
 {
     internal class Product
     {

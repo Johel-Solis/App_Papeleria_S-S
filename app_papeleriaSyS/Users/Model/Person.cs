@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace app_papeleriaSyS.model
+namespace app_papeleriaSyS.Users.Model
 {
     internal class Person
     {
@@ -21,14 +21,14 @@ namespace app_papeleriaSyS.model
         {
         }
 
-        public Person(int id, string name, string surname, int phone, )
+        public Person(int id, string name, string surname, int phone)
         {
-            this.Id = id;
-            this.Name = name;
-            this.Surname = surname;
-          
-            this.Phone = phone;
-    
+            Id = id;
+            Name = name;
+            Surname = surname;
+
+            Phone = phone;
+
         }
         #endregion
 
@@ -39,9 +39,9 @@ namespace app_papeleriaSyS.model
         public string Email { get => email; set => email = value; }
         public int Phone { get => phone; set => phone = value; }
         public string Birthdate { get => birthdate; set => birthdate = value; }
-       
 
-        
+
+
 
         #endregion
     }

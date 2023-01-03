@@ -1,10 +1,10 @@
-﻿sing System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace app_papeleriaSyS.Product.Model
+namespace app_papeleriaSyS.Products.Model
 {
     internal class Category
     {

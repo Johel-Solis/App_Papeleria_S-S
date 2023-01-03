@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using app_papeleriaSyS.Products.Model;
 
-namespace app_papeleriaSyS.Bill.Model
+namespace app_papeleriaSyS.Bills.Model
 {
     internal class SaleDetail
     {

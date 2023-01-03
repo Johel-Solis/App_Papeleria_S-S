@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace app_papeleriaSyS.Customer.Model
+namespace app_papeleriaSyS.Customers.Model
 {
     internal class Customer
     {
