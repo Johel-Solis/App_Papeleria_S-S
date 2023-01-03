@@ -16,24 +16,28 @@ namespace app_papeleriaSyS.Users.Model
         private string username;
         private string password;
         private string typeUser;
+        private bool state;
         #endregion
         #region contructor
         public User()
         {
         }
-        public User(string username, string password, string typeUser, int id, string name, string surname, int phone) : base(id, name, surname, phone)
+
+        public User(string username, string password, string typeUser, bool state)
         {
-            Username = username;
-            Password = password;
-            TypeUser = typeUser;
-
-
+            this.username = username;
+            this.password = password;
+            this.typeUser = typeUser;
+            this.State = state;
+          
         }
+
         #endregion
         #region getter and setter
         public string Username { get => username; set => username = value; }
         public string Password { get => password; set => password = value; }
         public string TypeUser { get => typeUser; set => typeUser = value; }
+        public bool State { get => state; set => state = value; }
 
         #endregion
 

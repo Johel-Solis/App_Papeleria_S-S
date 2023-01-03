@@ -8,3 +8,5 @@ C:\Users\ivets\source\repos\app_papeleriaSyS\app_papeleriaSyS\bin\Debug\app_pape
 C:\Users\ivets\source\repos\app_papeleriaSyS\app_papeleriaSyS\bin\Debug\app_papeleriaSyS.pdb
 C:\Users\ivets\source\repos\app_papeleriaSyS\app_papeleriaSyS\obj\Debug\app_papeleriaSyS.exe
 C:\Users\ivets\source\repos\app_papeleriaSyS\app_papeleriaSyS\obj\Debug\app_papeleriaSyS.pdb
+C:\Users\ivets\source\repos\app_papeleriaSyS\app_papeleriaSyS\bin\Debug\PapeleriaDB.mdf
+C:\Users\ivets\source\repos\app_papeleriaSyS\app_papeleriaSyS\bin\Debug\PapeleriaDB_log.ldf

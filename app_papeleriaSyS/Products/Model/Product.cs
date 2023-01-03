@@ -9,7 +9,7 @@ namespace app_papeleriaSyS.Products.Model
     internal class Product
     {
         #region attribute
-        private long idProduct;
+        private int reference;
         private string name;
         private string description;
         private Category category;
@@ -26,9 +26,9 @@ namespace app_papeleriaSyS.Products.Model
         {
         }
 
-        public Product(long idProduct, string name, string description, Category category, int stock, string brand, float purchase_price, float sale_price, bool state)
+        public Product(int idProduct, string name, string description, Category category, int stock, string brand, float purchase_price, float sale_price, bool state)
         {
-            this.IdProduct = idProduct;
+            this.reference = idProduct;
             this.Name = name;
             this.Description = description;
             this.Category = category;
@@ -41,7 +41,7 @@ namespace app_papeleriaSyS.Products.Model
 
         #endregion
         #region getter and setter
-        public long IdProduct { get => idProduct; set => idProduct = value; }
+        public int IdProduct { get => reference; set => reference = value; }
         public string Name { get => name; set => name = value; }
         public string Description { get => description; set => description = value; }
         public int Stock { get => stock; set => stock = value; }

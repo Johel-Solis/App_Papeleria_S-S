@@ -20,7 +20,6 @@ namespace app_papeleriaSyS.Users.Model
         public Person()
         {
         }
-
         public Person(int id, string name, string surname, int phone)
         {
             Id = id;
@@ -31,7 +30,6 @@ namespace app_papeleriaSyS.Users.Model
 
         }
         #endregion
-
         #region getter and setter
         public int Id { get => id; set => id = value; }
         public string Name { get => name; set => name = value; }
@@ -39,10 +37,6 @@ namespace app_papeleriaSyS.Users.Model
         public string Email { get => email; set => email = value; }
         public int Phone { get => phone; set => phone = value; }
         public string Birthdate { get => birthdate; set => birthdate = value; }
-
-
-
-
         #endregion
     }
 }
