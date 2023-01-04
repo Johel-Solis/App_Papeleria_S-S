@@ -19,6 +19,8 @@ namespace app_papeleriaSyS.Users.Model
         #region constructor
         public Person()
         {
+            this.Email = "";
+            this.Birthdate = "";
         }
         public Person(int id, string name, string surname, int phone)
         {

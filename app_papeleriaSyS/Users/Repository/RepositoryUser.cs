@@ -23,10 +23,11 @@ namespace app_papeleriaSyS.Users.Repository
         // crea el usuario en la base de datos 
         public bool createUser(User user)
         {
+            conn = new SqlConnection(ConectionDB.Conection.GetConection());
             //sentencia sql  para insertar  los datos del usuario en la base de datos 
-            string query = "INSERT INTO users (username,password,typeUser,Id,state) VALUES (@username, @password, @ typeUser, @Id, @state )";
-            try
-            {
+            string query = "INSERT INTO users (username,password,typeUser,Id,state) VALUES (@username,@password,@typeUser,@Id, @state )";
+           // try
+            //{
                 // abre la conexion
                 conn.Open();
                 //crea la sentencia 
@@ -44,11 +45,12 @@ namespace app_papeleriaSyS.Users.Repository
 
                 return true;
 
-            }
-            catch
-            {
-                return false;
-            }
+           // }
+            //catch
+            //{
+
+              //  return false;
+            //}
         }
 
         public bool updateUser(User user)

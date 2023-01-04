@@ -21,14 +21,15 @@ namespace app_papeleriaSyS.Users.Model
         #region contructor
         public User()
         {
+            this.state= true;
         }
 
-        public User(string username, string password, string typeUser, bool state)
+        public User(string username, string password, string typeUser)
         {
             this.username = username;
             this.password = password;
             this.typeUser = typeUser;
-            this.State = state;
+            this.State = true;
           
         }
 

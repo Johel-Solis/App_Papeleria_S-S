@@ -10,11 +10,12 @@ namespace app_papeleriaSyS.Providers.Model
     {
         #region attribute 
         private int nit;
-        private string nameProvider;
-        private string emailProvider;
-        private int phoneNumberProvider;
+        private string name;
+        private string email;
+        private int phoneNumber;
         private string bank;
-        private string accountNumber;
+        private int accountNumber;
+        private bool state;
 
         #endregion
         #region
@@ -22,16 +23,31 @@ namespace app_papeleriaSyS.Providers.Model
         {
         }
 
-        public Provider(int nit, string nameProvider, string emailProvider, int phoneNumberProvider, string bank, string accountNumber)
+        public Provider(int nit, string name, string email, int phoneNumber, string bank, int accountNumber, bool state)
         {
             this.nit = nit;
-            this.nameProvider = nameProvider;
-            this.emailProvider = emailProvider;
-            this.phoneNumberProvider = phoneNumberProvider;
+            this.name = name;
+            this.email = email;
+            this.phoneNumber = phoneNumber;
             this.bank = bank;
             this.accountNumber = accountNumber;
+            this.state = state;
         }
+
+
+
+
+
         #endregion
 
+        #region getter an setter
+        public int Nit { get => nit; set => nit = value; }
+        public string Name { get => name; set => name = value; }
+        public string Email { get => email; set => email = value; }
+        public int PhoneNumber { get => phoneNumber; set => phoneNumber = value; }
+        public string Bank { get => bank; set => bank = value; }
+        public int AccountNumber { get => accountNumber; set => accountNumber = value; }
+        public bool State { get => state; set => state = value; }
+        #endregion
     }
 }
