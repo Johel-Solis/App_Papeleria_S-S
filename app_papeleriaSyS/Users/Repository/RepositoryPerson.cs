@@ -22,10 +22,11 @@ namespace app_papeleriaSyS.Users.Repository
         // crea el usuario en la base de datos 
         public bool createPerson(Person person)
         {
+            conn = new SqlConnection(ConectionDB.Conection.GetConection());
             //sentencia sql  para insertar  los datos del usuario en la base de datos 
-            string query = "INSERT INTO person (Id, name , surname , email , phoneNumber , birthdate) VALUES (@Id, @name , @surname , @email , @phoneNumber , @birthdate)";
-            try
-            {
+            string query = "INSERT INTO persons (Id, name , surname , email , phoneNumber , birthdate) VALUES (@Id, @name , @surname , @email , @phoneNumber , @birthdate)";
+           // try
+            //{
                 // abre la conexion
                 conn.Open();
                 //crea la sentencia 
@@ -34,7 +35,7 @@ namespace app_papeleriaSyS.Users.Repository
                 cmd.Parameters.AddWithValue("@Id", person.Id);
                 cmd.Parameters.AddWithValue("@name", person.Name);
                 cmd.Parameters.AddWithValue("@surname", person.Surname);
-                cmd.Parameters.AddWithValue("emali", (person.Email == null) ? "  " : person.Email);
+                cmd.Parameters.AddWithValue("email", (person.Email == null) ? "  " : person.Email);
                 cmd.Parameters.AddWithValue("@phoneNumber",person.Phone );
                 cmd.Parameters.AddWithValue("@birthdate", (person.Birthdate == null)? "  ": person.Birthdate );
                 //ejecuta la sentencia
@@ -44,11 +45,11 @@ namespace app_papeleriaSyS.Users.Repository
 
                 return true;
 
-            }
-            catch
-            {
-                return false;
-            }
+            //}
+           // catch
+            //{
+              //  return false;
+        //    }
         }
 
         public bool updatePerson(Person person)

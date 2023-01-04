@@ -79,6 +79,7 @@
     <Compile Include="Products\Model\Category.cs" />
     <Compile Include="Products\Model\Product.cs" />
     <Compile Include="Providers\Model\Provider.cs" />
+    <Compile Include="Providers\Repository\RepositoryProvider.cs" />
     <Compile Include="Users\Controller\UserController.cs" />
     <Compile Include="Users\Model\Person.cs" />
     <Compile Include="Program.cs" />

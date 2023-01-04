@@ -15,13 +15,7 @@ namespace app_papeleriaSyS.Users.Controller
 
         public bool createUser(string username, string pass,string typeUser, int id, string name, string surname, int phone)
         {
-            User user = new User(username,
-                                 Encryption.encryptKey(pass),
-                                 typeUser,
-                                 id,
-                                 name,
-                                 surname,
-                                 phone);
+            
 
 
 
