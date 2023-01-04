@@ -123,8 +123,47 @@ namespace app_papeleriaSyS.Users.Repository
 
         }
 
-        public User vewUser(string username);
-        public bool deleteUser(string username);
+        public User vewUser(string username)
+        {
+            string query = "SELECT * FROM users WHERE  username = @username";
+            try
+            {
+                conn.Open();
+                cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@username", username);
+                rdr= cmd.ExecuteReader();
+                if (rdr.Read())
+                {
+                    User user = new User();
+                    user.Id = (int)rdr["Id"];
+                    user.Username= (string)rdr["username"];
+                    user.Password= (string)rdr["password"];
+                    user.TypeUser = (string)rdr["typeUser"];
+                    user.State = ((int)rdr["state"]) == 1 ? true : false;
+                    return user;
+                }
+                return null;
+
+            }catch { return null; }
+
+        }
+
+   
+        public bool deleteUser(string username)
+        {
+            string query = "DELETE FROM users WHERE username = @username";
+            try
+            {
+                conn.Open();
+                cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue ("@username", username);
+                cmd.ExecuteNonQuery();
+                conn.Close();
+                return true;
+            }
+            catch { return false; }
+
+        }
         
     }
 }
