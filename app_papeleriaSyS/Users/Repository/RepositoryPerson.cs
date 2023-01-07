@@ -1,10 +1,7 @@
-﻿using System;
+﻿using app_papeleriaSyS.Users.Model;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using app_papeleriaSyS.Users.Model;
 
 namespace app_papeleriaSyS.Users.Repository
 {
@@ -24,54 +21,60 @@ namespace app_papeleriaSyS.Users.Repository
         {
             conn = new SqlConnection(ConectionDB.Conection.GetConection());
             //sentencia sql  para insertar  los datos del usuario en la base de datos 
-            string query = "INSERT INTO persons (Id, name , surname , email , phoneNumber , birthdate) VALUES (@Id, @name , @surname , @email , @phoneNumber , @birthdate)";
-           // try
+            string query = "insertPerson";
+            // try
             //{
-                // abre la conexion
-                conn.Open();
-                //crea la sentencia 
-                cmd = new SqlCommand(query, conn);
-                //agrega los parametros 
-                cmd.Parameters.AddWithValue("@Id", person.Id);
-                cmd.Parameters.AddWithValue("@name", person.Name);
-                cmd.Parameters.AddWithValue("@surname", person.Surname);
-                cmd.Parameters.AddWithValue("email", (person.Email == null) ? "  " : person.Email);
-                cmd.Parameters.AddWithValue("@phoneNumber",person.Phone );
-                cmd.Parameters.AddWithValue("@birthdate", (person.Birthdate == null)? "  ": person.Birthdate );
-                //ejecuta la sentencia
-                cmd.ExecuteNonQuery();
-                // cierra la conexion
-                conn.Close();
-
+            // abre la conexion
+            conn.Open();
+            //crea la sentencia 
+            cmd = new SqlCommand(query, conn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            //agrega los parametros 
+            cmd.Parameters.AddWithValue("@Id", person.Id);
+            cmd.Parameters.AddWithValue("@name", person.Name);
+            cmd.Parameters.AddWithValue("@surname", person.Surname);
+            cmd.Parameters.AddWithValue("email", person.Email);
+            cmd.Parameters.AddWithValue("@phoneNumber", person.Phone);
+            cmd.Parameters.AddWithValue("@birthdate", person.Birthdate);
+            //ejecuta la sentencia
+            int result = cmd.ExecuteNonQuery();
+            conn.Close();
+            if (result > 0)
+            {
                 return true;
+            }
+            return false;
 
             //}
-           // catch
+            // catch
             //{
-              //  return false;
-        //    }
+            //  return false;
+            //    }
         }
 
         public bool updatePerson(Person person)
         {
-            string query = "UPDATE person  SET Id = @Id ,name = @name , surname = @surname , email = @email , phoneNumber= @phoneNumber, birthdate =@birthdate  WHERE Id=@Id";
+            string query = "updatePerson";
 
             try
             {
                 conn.Open();
                 cmd = new SqlCommand(query, conn);
-
+                cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@Id", person.Id);
                 cmd.Parameters.AddWithValue("@name", person.Name);
                 cmd.Parameters.AddWithValue("@surname", person.Surname);
-                cmd.Parameters.AddWithValue("@email",(person.Email == null)? "  ": person.Email);
+                cmd.Parameters.AddWithValue("@email", person.Email);
                 cmd.Parameters.AddWithValue("@phoneNumber", person.Phone);
-                cmd.Parameters.AddWithValue("@birthdate", (person.Birthdate == null)? "  ": person.Birthdate );
+                cmd.Parameters.AddWithValue("@birthdate", person.Birthdate);
 
-                cmd.ExecuteNonQuery();
+                int result = cmd.ExecuteNonQuery();
                 conn.Close();
-                return true;
-
+                if (result > 0)
+                {
+                    return true;
+                }
+                return false;
             }
             catch
             {
