@@ -1,11 +1,6 @@
-﻿using app_papeleriaSyS.Users.Model;
-using System;
+﻿using app_papeleriaSyS.Providers.Model;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using app_papeleriaSyS.Providers.Model;
 
 namespace app_papeleriaSyS.Providers.Repository
 {
@@ -34,10 +29,10 @@ namespace app_papeleriaSyS.Providers.Repository
                 //agrega los parametros 
                 cmd.Parameters.AddWithValue("@nit", provider.Nit);
                 cmd.Parameters.AddWithValue("@name", provider.Name);
-                cmd.Parameters.AddWithValue("email",provider.Email);
+                cmd.Parameters.AddWithValue("email", provider.Email);
                 cmd.Parameters.AddWithValue("@phoneNumber", provider.PhoneNumber);
-                cmd.Parameters.AddWithValue("@bank", provider.Bank );
-                cmd.Parameters.AddWithValue("@acountNumber", provider.AccountNumber );
+                cmd.Parameters.AddWithValue("@bank", provider.Bank);
+                cmd.Parameters.AddWithValue("@acountNumber", provider.AccountNumber);
                 cmd.Parameters.AddWithValue("@state", (provider.State) ? 1 : 0);
                 //ejecuta la sentencia
                 cmd.ExecuteNonQuery();
@@ -86,7 +81,7 @@ namespace app_papeleriaSyS.Providers.Repository
 
 
         }
-        
+
         public List<Provider> listProviders()
         {
             //crea la instruccion sql
@@ -113,7 +108,7 @@ namespace app_papeleriaSyS.Providers.Repository
                     provider.PhoneNumber = (int)rdr["phoneNumber"];
                     provider.Bank = (string)rdr["birthdate"];
                     provider.AccountNumber = (int)rdr["accountNumber"];
-                    provider.State = ((int)rdr["state"])==1? true: false;
+                    provider.State = ((int)rdr["state"]) == 1 ? true : false;
                     providers.Add(provider);
                 }
                 //cierra la conexion;

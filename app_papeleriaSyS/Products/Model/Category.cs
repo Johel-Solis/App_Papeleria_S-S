@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace app_papeleriaSyS.Products.Model
+﻿namespace app_papeleriaSyS.Products.Model
 {
     internal class Category
     {
@@ -20,7 +14,7 @@ namespace app_papeleriaSyS.Products.Model
         {
         }
 
-        
+
         public Category(int id, string name, string description, bool state)
         {
             this.Id = id;

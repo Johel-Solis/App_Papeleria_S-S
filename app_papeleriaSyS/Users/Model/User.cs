@@ -1,14 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection.Emit;
-using System.Text;
-using System.Threading.Tasks;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
-using System.Xml.Linq;
-using app_papeleriaSyS.Users.Model;
-
-namespace app_papeleriaSyS.Users.Model
+﻿namespace app_papeleriaSyS.Users.Model
 {
     internal class User : Person
     {
@@ -21,7 +11,7 @@ namespace app_papeleriaSyS.Users.Model
         #region contructor
         public User()
         {
-            this.state= true;
+            this.state = true;
         }
 
         public User(string username, string password, string typeUser)
@@ -30,7 +20,7 @@ namespace app_papeleriaSyS.Users.Model
             this.password = password;
             this.typeUser = typeUser;
             this.State = true;
-          
+
         }
 
         #endregion

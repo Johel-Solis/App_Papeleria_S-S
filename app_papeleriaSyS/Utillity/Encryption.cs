@@ -1,16 +1,13 @@
-﻿using System.Security.Cryptography;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System;
+using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace app_papeleriaSyS.Utillity
 {
     internal class Encryption
     {
 
-      
+
 
         // Encripta Contraseña
         public static string encryptKey(string cadena)
@@ -51,7 +48,7 @@ namespace app_papeleriaSyS.Utillity
             string key = "ABCDEFG54669525PQRSTUVWXYZabcdef852846opqrstuvwxyz";
             byte[] keyArray;
             //convierte el texto en una secuencia de bytes
-            byte[]  Array_a_Descifrar = Convert. FromBase64String(clave);
+            byte[] Array_a_Descifrar = Convert.FromBase64String(clave);
             //se llama a las clases que tienen los algoritmos  de encriptacion se le aplica el hashing
             //algoritmo MD5
             MD5CryptoServiceProvider hashmd5 = new MD5CryptoServiceProvider();
