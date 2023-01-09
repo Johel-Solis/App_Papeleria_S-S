@@ -1,5 +1,6 @@
 ﻿using app_papeleriaSyS.Providers.Model;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 
 namespace app_papeleriaSyS.Providers.Repository
@@ -19,13 +20,14 @@ namespace app_papeleriaSyS.Providers.Repository
         public bool createProvider(Provider provider)
         {
             //sentencia sql  para insertar  los datos del usuario en la base de datos 
-            string query = "INSERT INTO providers (nit, name , email , phoneNumber , bank, accountNumber, satate) VALUES (@nit, @name ,@email , @phoneNumber , @bank , @accountNumber, @state)";
+            string query = "insertProvider";
             try
             {
                 // abre la conexion
                 conn.Open();
                 //crea la sentencia 
                 cmd = new SqlCommand(query, conn);
+                cmd.CommandType = CommandType.StoredProcedure;
                 //agrega los parametros 
                 cmd.Parameters.AddWithValue("@nit", provider.Nit);
                 cmd.Parameters.AddWithValue("@name", provider.Name);
@@ -35,11 +37,13 @@ namespace app_papeleriaSyS.Providers.Repository
                 cmd.Parameters.AddWithValue("@acountNumber", provider.AccountNumber);
                 cmd.Parameters.AddWithValue("@state", (provider.State) ? 1 : 0);
                 //ejecuta la sentencia
-                cmd.ExecuteNonQuery();
-                // cierra la conexion
+                int result = cmd.ExecuteNonQuery();
                 conn.Close();
-
-                return true;
+                if (result > 0)
+                {
+                    return true;
+                }
+                return false;
 
             }
             catch
@@ -50,13 +54,12 @@ namespace app_papeleriaSyS.Providers.Repository
 
         public bool updateProvider(Provider provider)
         {
-            string query = "UPDATE provider  SET nit = @nit ,name = @name , email = @email , phoneNumber= @phoneNumber, bakn = @bank, acountNumber = @accountNumber, state = @state  WHERE nit=@nit";
-
+            string query = "updatePerson";
             try
             {
                 conn.Open();
-                cmd = new SqlCommand(query, conn);
-
+                cmd = new SqlCommand(query,conn);
+                cmd.CommandType = CommandType.StoredProcedure;90
                 cmd.Parameters.AddWithValue("@nit", provider.Nit);
                 cmd.Parameters.AddWithValue("@name", provider.Name);
                 cmd.Parameters.AddWithValue("email", provider.Email);

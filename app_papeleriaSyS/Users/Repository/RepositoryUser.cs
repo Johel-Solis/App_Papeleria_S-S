@@ -24,8 +24,8 @@ namespace app_papeleriaSyS.Users.Repository
             conn = new SqlConnection(ConectionDB.Conection.GetConection());
             //sentencia sql  para insertar  los datos del usuario en la base de datos 
             string query = "insetUser";
-            // try
-            //{
+             try
+            {
             // abre la conexion
             conn.Open();
             //crea la sentencia 
@@ -46,12 +46,12 @@ namespace app_papeleriaSyS.Users.Repository
             }
             return false;
 
-            // }
-            //catch
-            //{
+            }
+            catch
+            {
 
-            //  return false;
-            //}
+              return false;
+            }
         }
 
         public bool updateUser(User user)
@@ -124,10 +124,6 @@ namespace app_papeleriaSyS.Users.Repository
             }
             catch
             { return null; }
-
-
-
-
 
         }
         public List<User> listStateUsers(int state)

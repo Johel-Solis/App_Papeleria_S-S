@@ -22,8 +22,8 @@ namespace app_papeleriaSyS.Users.Repository
             conn = new SqlConnection(ConectionDB.Conection.GetConection());
             //sentencia sql  para insertar  los datos del usuario en la base de datos 
             string query = "insertPerson";
-            // try
-            //{
+             try
+            {
             // abre la conexion
             conn.Open();
             //crea la sentencia 
@@ -45,11 +45,11 @@ namespace app_papeleriaSyS.Users.Repository
             }
             return false;
 
-            //}
-            // catch
-            //{
-            //  return false;
-            //    }
+            }
+             catch
+            {
+              return false;
+              }
         }
 
         public bool updatePerson(Person person)
@@ -91,7 +91,7 @@ namespace app_papeleriaSyS.Users.Repository
         public List<Person> listPersons()
         {
             //crea la instruccion sql
-            string query = " SELECT * FROM persons";
+            string query = "listPerson";
             // unicializa la lista de usuarios
             List<Person> persons = new List<Person>();
             try
@@ -100,7 +100,7 @@ namespace app_papeleriaSyS.Users.Repository
                 conn.Open();
                 //crea la variable que selecciona todos los registros.
                 cmd = new SqlCommand(query, conn);
-                cmd.CommandType = System.Data.CommandType.Text;//tipo del comando
+                cmd.CommandType = CommandType.StoredProcedure;//tipo del comando
                 //ejecuta la instruccion sql
                 rdr = cmd.ExecuteReader();
                 //bucle para recorer cada registro
@@ -124,15 +124,50 @@ namespace app_papeleriaSyS.Users.Repository
             catch
             { return null; }
 
-
-
-
+        }
+        public List<Person> listStateUsers(int state)
+        {
+            //crea la instruccion sql
+            string query = "listStatePerson";
+            // unicializa la lista de usuarios
+            List<Person> persons = new List<Person>();
+            try
+            {
+                //abre la conexion
+                conn.Open();
+                //crea la variable que selecciona todos los registros.
+                cmd = new SqlCommand(query, conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@state", state);
+                //ejecuta la instruccion sql
+                rdr = cmd.ExecuteReader();
+                //bucle para recorer cada registro
+                while (rdr.Read())
+                {
+                    //  Crea un nuevo usuario y asigna lo datos del registro
+                    Person person = new Person();
+                    person.Id = (int)rdr["Id"];
+                    person.Name = (string)rdr["Name"];
+                    person.Surname = (string)rdr["surname"];
+                    person.Email = (string)rdr["email"];
+                    person.Phone = (int)rdr["phoneNumber"];
+                    person.Birthdate = (string)rdr["birthdate"];
+                    //se agrega el usuario a la lista
+                }
+                //cierra la conexion;
+                conn.Close();
+                rdr.Close();
+                //retorna la lista de usuarios
+                return persons;
+            }
+            catch
+            { return null; }
 
         }
 
-        public Person vewUser(int id)
+        public Person vewPerson(int id)
         {
-            string query = "SELECT * FROM persons WHERE  Id = @Id";
+            string query = "ViewPerson";
             try
             {
                 conn.Open();
@@ -160,21 +195,24 @@ namespace app_papeleriaSyS.Users.Repository
 
         public bool deletePerson(int id)
         {
-            string query = "DELETE FROM persons WHERE Id = @Id";
+            string query = "deletePerson";
             try
             {
                 conn.Open();
                 cmd = new SqlCommand(query, conn);
+                cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@Id", id);
-                cmd.ExecuteNonQuery();
+                int result = cmd.ExecuteNonQuery();
                 conn.Close();
-                return true;
+                if (result > 0)
+                {
+                    return true;
+                }
+                return false;
             }
             catch { return false; }
 
         }
-
-
 
     }
 }
