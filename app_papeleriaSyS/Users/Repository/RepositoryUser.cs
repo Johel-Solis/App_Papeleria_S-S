@@ -172,7 +172,7 @@ namespace app_papeleriaSyS.Users.Repository
 
 
         }
-        public User vewUser(string username)
+        public User viewUser(string username)
         {
             //string query = "SELECT * FROM users WHERE  username = @username";
             string query = "viewUser";
