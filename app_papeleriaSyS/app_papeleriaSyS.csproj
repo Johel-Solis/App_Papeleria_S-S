@@ -70,6 +70,7 @@
     <Compile Include="Bills\Model\SaleDetail.cs" />
     <Compile Include="ConectionDB\Conection.cs" />
     <Compile Include="Customers\Model\Customer.cs" />
+    <Compile Include="Customers\Repository\RepositoryCustomer.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -78,6 +79,8 @@
     </Compile>
     <Compile Include="Products\Model\Category.cs" />
     <Compile Include="Products\Model\Product.cs" />
+    <Compile Include="Products\Repository\RepositoryCategory.cs" />
+    <Compile Include="Products\Repository\RepositoryProduct.cs" />
     <Compile Include="Providers\Model\Provider.cs" />
     <Compile Include="Providers\Repository\RepositoryProvider.cs" />
     <Compile Include="Users\Controller\UserController.cs" />

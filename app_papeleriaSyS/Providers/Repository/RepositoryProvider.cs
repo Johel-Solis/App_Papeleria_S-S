@@ -59,7 +59,7 @@ namespace app_papeleriaSyS.Providers.Repository
             {
                 conn.Open();
                 cmd = new SqlCommand(query,conn);
-                cmd.CommandType = CommandType.StoredProcedure;90
+                cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@nit", provider.Nit);
                 cmd.Parameters.AddWithValue("@name", provider.Name);
                 cmd.Parameters.AddWithValue("email", provider.Email);
@@ -88,7 +88,7 @@ namespace app_papeleriaSyS.Providers.Repository
         public List<Provider> listProviders()
         {
             //crea la instruccion sql
-            string query = " SELECT * FROM providers";
+            string query = " listProvider";
             // unicializa la lista de usuarios
             List<Provider> providers = new List<Provider>();
             try
@@ -97,7 +97,7 @@ namespace app_papeleriaSyS.Providers.Repository
                 conn.Open();
                 //crea la variable que selecciona todos los registros.
                 cmd = new SqlCommand(query, conn);
-                cmd.CommandType = System.Data.CommandType.Text;//tipo del comando
+                cmd.CommandType = CommandType.StoredProcedure;//tipo del comando
                 //ejecuta la instruccion sql
                 rdr = cmd.ExecuteReader();
                 //bucle para recorer cada registro
@@ -116,6 +116,7 @@ namespace app_papeleriaSyS.Providers.Repository
                 }
                 //cierra la conexion;
                 conn.Close();
+               rdr.Close();
                 //retorna la lista 
                 return providers;
             }
@@ -126,7 +127,7 @@ namespace app_papeleriaSyS.Providers.Repository
         public List<Provider> listProvidersState(int state)
         {
             //crea la instruccion sql
-            string query = " SELECT * FROM providers Where state = @state";
+            string query = "ListSteteProvider";
             // unicializa la lista de usuarios
             List<Provider> providers = new List<Provider>();
             try
@@ -136,7 +137,7 @@ namespace app_papeleriaSyS.Providers.Repository
                 //crea la variable que selecciona todos los registros.
                 cmd = new SqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@state", state);
-                cmd.CommandType = System.Data.CommandType.Text;//tipo del comando
+                cmd.CommandType = CommandType.StoredProcedure;//tipo del comando
                 //ejecuta la instruccion sql
                 rdr = cmd.ExecuteReader();
                 //bucle para recorer cada registro
@@ -155,6 +156,7 @@ namespace app_papeleriaSyS.Providers.Repository
                 }
                 //cierra la conexion;
                 conn.Close();
+                rdr.Close();
                 //retorna la lista de usuarios
                 return providers;
             }
@@ -162,17 +164,18 @@ namespace app_papeleriaSyS.Providers.Repository
             { return null; }
 
 
-
+            
 
 
         }
-        public Provider vewUser(int nit)
+        public Provider viewProvider(int nit)
         {
-            string query = "SELECT * FROM providers WHERE  nit = @nit";
+            string query = "viewProvider";
             try
             {
                 conn.Open();
                 cmd = new SqlCommand(query, conn);
+                cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@nit", nit);
                 rdr = cmd.ExecuteReader();
                 if (rdr.Read())
@@ -197,15 +200,20 @@ namespace app_papeleriaSyS.Providers.Repository
 
         public bool deleteProvider(int nit)
         {
-            string query = "DELETE FROM providers WHERE nit = @nit";
+            string query = "deleteProvider";
             try
             {
                 conn.Open();
                 cmd = new SqlCommand(query, conn);
+                cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@nit", nit);
-                cmd.ExecuteNonQuery();
+                int result = cmd.ExecuteNonQuery();
                 conn.Close();
-                return true;
+                if (result > 0)
+                {
+                    return true;
+                }
+                return false;
             }
             catch { return false; }
 

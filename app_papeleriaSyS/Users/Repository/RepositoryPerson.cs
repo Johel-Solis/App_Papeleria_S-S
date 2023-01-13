@@ -118,6 +118,7 @@ namespace app_papeleriaSyS.Users.Repository
                 }
                 //cierra la conexion;
                 conn.Close();
+                rdr.Close();
                 //retorna la lista de usuarios
                 return persons;
             }

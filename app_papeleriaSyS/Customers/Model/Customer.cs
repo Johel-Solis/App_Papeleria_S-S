@@ -3,7 +3,7 @@
     internal class Customer
     {
         #region attribute 
-        private readonly int nit;
+        private  int nit;
         private string name;
         private int phoneNumber;
         private string email;
@@ -18,7 +18,7 @@
 
         public Customer(int nit, string name, int phoneNumber, string email, bool state)
         {
-            this.nit = nit;
+            this.Nit = nit;
             this.Name = name;
             this.PhoneNumber = phoneNumber;
             this.Email = email;
@@ -27,12 +27,12 @@
         #endregion
 
         #region getter and setter
-        public int Nit => nit;
-
+      
         public string Name { get => name; set => name = value; }
         public int PhoneNumber { get => phoneNumber; set => phoneNumber = value; }
         public string Email { get => email; set => email = value; }
         public bool State { get => state; set => state = value; }
+        public int Nit { get => nit; set => nit = value; }
         #endregion
 
 

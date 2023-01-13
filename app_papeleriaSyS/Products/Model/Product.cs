@@ -1,4 +1,6 @@
-﻿namespace app_papeleriaSyS.Products.Model
+﻿using app_papeleriaSyS.Providers.Model;
+
+namespace app_papeleriaSyS.Products.Model
 {
     internal class Product
     {
@@ -12,6 +14,7 @@
         private float purchase_price;
         private float sale_price;
         private bool state;
+        private Provider provider;
 
 
         #endregion
@@ -20,8 +23,9 @@
         {
         }
 
-        public Product(int idProduct, string name, string description, Category category, int stock, string brand, float purchase_price, float sale_price, bool state)
+        public Product(int idProduct, string name, string description, Category category, int stock, string brand, float purchase_price, float sale_price, bool state, Provider provider)
         {
+            this.Provider = provider;
             this.reference = idProduct;
             this.Name = name;
             this.Description = description;
@@ -30,6 +34,7 @@
             this.Brand = brand;
             this.Purchase_price = purchase_price;
             this.Sale_price = sale_price;
+
             this.State = state;
         }
 
@@ -44,6 +49,7 @@
         public float Sale_price { get => sale_price; set => sale_price = value; }
         public bool State { get => state; set => state = value; }
         internal Category Category { get => category; set => category = value; }
+        internal Provider Provider { get => provider; set => provider = value; }
         #endregion
     }
 }
