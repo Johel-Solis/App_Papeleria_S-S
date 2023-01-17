@@ -79,7 +79,7 @@ namespace app_papeleriaSyS.Products.Repository
 
         }
 
-        public List<Category> listCategorys()
+        public List<Category> listCategory()
         {
             //crea la instruccion sql
             string query = " listCategory";

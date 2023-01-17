@@ -1,4 +1,6 @@
-﻿namespace app_papeleriaSyS.Users.Model
+﻿using System;
+
+namespace app_papeleriaSyS.Users.Model
 {
     internal class Person
     {
@@ -8,7 +10,7 @@
         private string surname;
         private string email;
         private int phone;
-        private string birthdate;
+        private DateTime birthdate;
         #endregion
         #region constructor
         public Person()
@@ -21,7 +23,6 @@
             Id = id;
             Name = name;
             Surname = surname;
-
             Phone = phone;
 
         }
@@ -32,7 +33,7 @@
         public string Surname { get => surname; set => surname = value; }
         public string Email { get => email; set => email = value; }
         public int Phone { get => phone; set => phone = value; }
-        public string Birthdate { get => birthdate; set => birthdate = value; }
+        public DateTime Birthdate { get => birthdate; set => birthdate = value; }
         #endregion
     }
 }

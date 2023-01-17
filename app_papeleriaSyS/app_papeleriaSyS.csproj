@@ -68,6 +68,8 @@
   <ItemGroup>
     <Compile Include="Bills\Model\Bill.cs" />
     <Compile Include="Bills\Model\SaleDetail.cs" />
+    <Compile Include="Bills\Repository\RepositoryBill.cs" />
+    <Compile Include="Bills\Repository\RepositorySaleDetail.cs" />
     <Compile Include="ConectionDB\Conection.cs" />
     <Compile Include="Customers\Model\Customer.cs" />
     <Compile Include="Customers\Repository\RepositoryCustomer.cs" />
