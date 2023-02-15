@@ -1,11 +1,12 @@
 ﻿using app_papeleriaSyS.Providers.Model;
+using System.Numerics;
 
 namespace app_papeleriaSyS.Products.Model
 {
-    internal class Product
+     class Product
     {
         #region attribute
-        private int reference;
+        private BigInteger reference;
         private string name;
         private string description;
         private Category category;
@@ -23,7 +24,7 @@ namespace app_papeleriaSyS.Products.Model
         {
         }
 
-        public Product(int idProduct, string name, string description, Category category, int stock, string brand, float purchase_price, float sale_price, bool state, Provider provider)
+        public Product(BigInteger idProduct, string name, string description, Category category, int stock, string brand, float purchase_price, float sale_price, bool state, Provider provider)
         {
             this.Provider = provider;
             this.reference = idProduct;
@@ -40,7 +41,7 @@ namespace app_papeleriaSyS.Products.Model
 
         #endregion
         #region getter and setter
-        public int IdProduct { get => reference; set => reference = value; }
+        public BigInteger IdProduct { get => reference; set => reference = value; }
         public string Name { get => name; set => name = value; }
         public string Description { get => description; set => description = value; }
         public int Stock { get => stock; set => stock = value; }

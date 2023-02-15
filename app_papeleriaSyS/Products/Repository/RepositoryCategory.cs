@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace app_papeleriaSyS.Products.Repository
 {
-    internal class RepositoryCategory
+     class RepositoryCategory
     {
         private SqlConnection conn;
         private SqlCommand cmd;

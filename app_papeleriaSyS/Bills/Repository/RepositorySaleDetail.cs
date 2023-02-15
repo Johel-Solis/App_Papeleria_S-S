@@ -11,7 +11,7 @@ using app_papeleriaSyS.Products.Repository;
 
 namespace app_papeleriaSyS.Bills.Repository
 {
-    internal class RepositorySaleDetail
+     class RepositorySaleDetail
     {
         private SqlConnection conn;
         private SqlCommand cmd;

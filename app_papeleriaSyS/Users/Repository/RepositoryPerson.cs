@@ -1,11 +1,13 @@
 ﻿using app_papeleriaSyS.Users.Model;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Numerics;
 
 namespace app_papeleriaSyS.Users.Repository
 {
-    internal class RepositoryPerson
+    public class RepositoryPerson
     {
         private SqlConnection conn;
         private SqlCommand cmd;
@@ -21,9 +23,9 @@ namespace app_papeleriaSyS.Users.Repository
         {
             conn = new SqlConnection(ConectionDB.Conection.GetConection());
             //sentencia sql  para insertar  los datos del usuario en la base de datos 
-            string query = "insertPerson";
-             try
-            {
+            string query = "InsertPerson";
+             /*try
+            {*/
             // abre la conexion
             conn.Open();
             //crea la sentencia 
@@ -37,7 +39,7 @@ namespace app_papeleriaSyS.Users.Repository
             cmd.Parameters.AddWithValue("@phoneNumber", person.Phone);
             cmd.Parameters.AddWithValue("@birthdate", person.Birthdate);
             //ejecuta la sentencia
-            int result = cmd.ExecuteNonQuery();
+            Int32 result = cmd.ExecuteNonQuery();
             conn.Close();
             if (result > 0)
             {
@@ -45,11 +47,12 @@ namespace app_papeleriaSyS.Users.Repository
             }
             return false;
 
-            }
-             catch
+            /*}
+             catch (Exception e)
             {
+              Console.WriteLine("{0} exception :",e);
               return false;
-              }
+              }*/
         }
 
         public bool updatePerson(Person person)
@@ -61,7 +64,7 @@ namespace app_papeleriaSyS.Users.Repository
                 conn.Open();
                 cmd = new SqlCommand(query, conn);
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@Id", person.Id);
+                cmd.Parameters.AddWithValue("@id", person.Id);
                 cmd.Parameters.AddWithValue("@name", person.Name);
                 cmd.Parameters.AddWithValue("@surname", person.Surname);
                 cmd.Parameters.AddWithValue("@email", person.Email);
@@ -80,12 +83,6 @@ namespace app_papeleriaSyS.Users.Repository
             {
                 return false;
             }
-
-
-
-
-
-
         }
         /*metodo obtiene la lista de los usuarios de la base de datos */
         public List<Person> listPersons()
@@ -108,12 +105,12 @@ namespace app_papeleriaSyS.Users.Repository
                 {
                     //  Crea un nuevo usuario y asigna lo datos del registro
                     Person person = new Person();
-                    person.Id = (int)rdr["Id"];
+                    person.Id = (BigInteger)rdr["Id"];
                     person.Name = (string)rdr["Name"];
                     person.Surname = (string)rdr["surname"];
                     person.Email = (string)rdr["email"];
-                    person.Phone = (int)rdr["phoneNumber"];
-                    person.Birthdate = (string)rdr["birthdate"];
+                    person.Phone = (BigInteger)rdr["phoneNumber"];
+                    person.Birthdate = (System.DateTime)rdr["birthdate"];
                     persons.Add(person);
                 }
                 //cierra la conexion;
@@ -126,7 +123,7 @@ namespace app_papeleriaSyS.Users.Repository
             { return null; }
 
         }
-        public List<Person> listStateUsers(int state)
+        public List<Person> listStateUsers(BigInteger state)
         {
             //crea la instruccion sql
             string query = "listStatePerson";
@@ -147,12 +144,12 @@ namespace app_papeleriaSyS.Users.Repository
                 {
                     //  Crea un nuevo usuario y asigna lo datos del registro
                     Person person = new Person();
-                    person.Id = (int)rdr["Id"];
+                    person.Id = (BigInteger)rdr["Id"];
                     person.Name = (string)rdr["Name"];
                     person.Surname = (string)rdr["surname"];
                     person.Email = (string)rdr["email"];
-                    person.Phone = (int)rdr["phoneNumber"];
-                    person.Birthdate = (string)rdr["birthdate"];
+                    person.Phone = (BigInteger)rdr["phoneNumber"];
+                    person.Birthdate = (System.DateTime)rdr["birthdate"];
                     //se agrega el usuario a la lista
                 }
                 //cierra la conexion;
@@ -166,7 +163,7 @@ namespace app_papeleriaSyS.Users.Repository
 
         }
 
-        public Person vewPerson(int id)
+        public Person viewPerson(BigInteger id)
         {
             string query = "ViewPerson";
             try
@@ -178,23 +175,20 @@ namespace app_papeleriaSyS.Users.Repository
                 if (rdr.Read())
                 {
                     Person person = new Person();
-                    person.Id = (int)rdr["Id"];
+                    person.Id = (BigInteger)rdr["Id"];
                     person.Name = (string)rdr["Name"];
                     person.Surname = (string)rdr["surname"];
                     person.Email = (string)rdr["email"];
-                    person.Phone = (int)rdr["phoneNumber"];
-                    person.Birthdate = (string)rdr["birthdate"];
+                    person.Phone = (BigInteger)rdr["phoneNumber"];
+                    person.Birthdate = (System.DateTime)rdr["birthdate"];
                     return person;
                 }
                 return null;
 
             }
             catch { return null; }
-
         }
-
-
-        public bool deletePerson(int id)
+        public bool deletePerson(BigInteger id)
         {
             string query = "deletePerson";
             try
@@ -212,7 +206,6 @@ namespace app_papeleriaSyS.Users.Repository
                 return false;
             }
             catch { return false; }
-
         }
 
     }

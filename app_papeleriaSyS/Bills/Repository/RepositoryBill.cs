@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace app_papeleriaSyS.Bills.Repository
 {
-    internal class RepositoryBill
+    class RepositoryBill
     {
         private SqlConnection conn;
         private SqlCommand cmd;

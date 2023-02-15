@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Numerics;
 
 namespace app_papeleriaSyS.Providers.Repository
 {
-    internal class RepositoryProvider
+     class RepositoryProvider
     {
         private SqlConnection conn;
         private SqlCommand cmd;
@@ -105,12 +106,12 @@ namespace app_papeleriaSyS.Providers.Repository
                 {
                     //  Crea un nuevo usuario y asigna lo datos del registro
                     Provider provider = new Provider();
-                    provider.Nit = (int)rdr["nit"];
+                    provider.Nit = (BigInteger)rdr["nit"];
                     provider.Name = (string)rdr["Name"];
                     provider.Email = (string)rdr["email"];
-                    provider.PhoneNumber = (int)rdr["phoneNumber"];
-                    provider.Bank = (string)rdr["birthdate"];
-                    provider.AccountNumber = (int)rdr["accountNumber"];
+                    provider.PhoneNumber = (BigInteger)rdr["phoneNumber"];
+                    provider.Bank = (string)rdr["bank"];
+                    provider.AccountNumber = (BigInteger)rdr["accountNumber"];
                     provider.State = ((int)rdr["state"]) == 1 ? true : false;
                     providers.Add(provider);
                 }
@@ -145,12 +146,12 @@ namespace app_papeleriaSyS.Providers.Repository
                 {
                     //  Crea un nuevo usuario y asigna lo datos del registro
                     Provider provider = new Provider();
-                    provider.Nit = (int)rdr["nit"];
+                    provider.Nit = (BigInteger)rdr["nit"];
                     provider.Name = (string)rdr["Name"];
                     provider.Email = (string)rdr["email"];
-                    provider.PhoneNumber = (int)rdr["phoneNumber"];
-                    provider.Bank = (string)rdr["birthdate"];
-                    provider.AccountNumber = (int)rdr["accountNumber"];
+                    provider.PhoneNumber = (BigInteger)rdr["phoneNumber"];
+                    provider.Bank = (string)rdr["bank"];
+                    provider.AccountNumber = (BigInteger)rdr["accountNumber"];
                     provider.State = ((int)rdr["state"]) == 1 ? true : false;
                     providers.Add(provider);
                 }
@@ -168,7 +169,7 @@ namespace app_papeleriaSyS.Providers.Repository
 
 
         }
-        public Provider viewProvider(int nit)
+        public Provider viewProvider(BigInteger nit)
         {
             string query = "viewProvider";
             try
@@ -181,12 +182,12 @@ namespace app_papeleriaSyS.Providers.Repository
                 if (rdr.Read())
                 {
                     Provider provider = new Provider();
-                    provider.Nit = (int)rdr["nit"];
+                    provider.Nit = (BigInteger)rdr["nit"];
                     provider.Name = (string)rdr["Name"];
                     provider.Email = (string)rdr["email"];
-                    provider.PhoneNumber = (int)rdr["phoneNumber"];
-                    provider.Bank = (string)rdr["birthdate"];
-                    provider.AccountNumber = (int)rdr["accountNumber"];
+                    provider.PhoneNumber = (BigInteger)rdr["phoneNumber"];
+                    provider.Bank = (string)rdr["bank"];
+                    provider.AccountNumber = (BigInteger)rdr["accountNumber"];
                     provider.State = ((int)rdr["state"]) == 1 ? true : false;
                     return provider;
                 }
@@ -198,7 +199,7 @@ namespace app_papeleriaSyS.Providers.Repository
         }
 
 
-        public bool deleteProvider(int nit)
+        public bool deleteProvider(BigInteger nit)
         {
             string query = "deleteProvider";
             try

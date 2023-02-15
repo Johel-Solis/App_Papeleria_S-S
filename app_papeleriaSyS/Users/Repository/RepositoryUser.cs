@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Numerics;
 using System.Runtime.Remoting.Messaging;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
-
+using app_papeleriaSyS.Users.Repository;
 namespace app_papeleriaSyS.Users.Repository
 {
-    internal class RepositoryUser
+    public class RepositoryUser
     {
         private SqlConnection conn;
         private SqlCommand cmd;
@@ -23,7 +23,7 @@ namespace app_papeleriaSyS.Users.Repository
         {
             conn = new SqlConnection(ConectionDB.Conection.GetConection());
             //sentencia sql  para insertar  los datos del usuario en la base de datos 
-            string query = "insetUser";
+            string query = "InsetUser";
              try
             {
             // abre la conexion
@@ -35,7 +35,7 @@ namespace app_papeleriaSyS.Users.Repository
             cmd.Parameters.AddWithValue("@username", user.Username);
             cmd.Parameters.AddWithValue("@password", user.Password);
             cmd.Parameters.AddWithValue("@typeUser", user.TypeUser);
-            cmd.Parameters.AddWithValue("@Id", user.Id);
+            cmd.Parameters.AddWithValue("@id", user.Id);
             cmd.Parameters.AddWithValue("@state", 1);
             //ejecuta la sentencia
             int result = cmd.ExecuteNonQuery();
@@ -65,7 +65,7 @@ namespace app_papeleriaSyS.Users.Repository
                 cmd.Parameters.AddWithValue("@username", user.Username);
                 cmd.Parameters.AddWithValue("@password", user.Password);
                 cmd.Parameters.AddWithValue("@typeUser", user.TypeUser);
-                cmd.Parameters.AddWithValue("@Id", user.Id);
+                cmd.Parameters.AddWithValue("@id", user.Id);
                 cmd.Parameters.AddWithValue("@state", (user.State ? 1 : 0));
 
                 cmd.ExecuteNonQuery();
@@ -111,9 +111,15 @@ namespace app_papeleriaSyS.Users.Repository
                     user.Username = (string)rdr["username"];
                     user.Password = (string)rdr["password"];
                     user.TypeUser = (string)rdr["typeUser"];
-                    user.Id = (int)rdr["Id"];
+                    user.Id = (BigInteger)rdr["Id"];
                     user.State = ((int)rdr["state"]) == 1 ? true : false;
                     //se agrega el usuario a la lista
+                    Person p = getPerson(user.Id);
+                    user.Surname = p.Surname;
+                    user.Name = p.Name;
+                    user.Email = p.Email;
+                    user.Phone = p.Phone;
+                    user.Birthdate = p.Birthdate;
                     users.Add(user);
                 }
                 //cierra la conexion;
@@ -153,9 +159,15 @@ namespace app_papeleriaSyS.Users.Repository
                     user.Username = (string)rdr["username"];
                     user.Password = (string)rdr["password"];
                     user.TypeUser = (string)rdr["typeUser"];
-                    user.Id = (int)rdr["Id"];
+                    user.Id = (BigInteger)rdr["Id"];
                     user.State = ((int)rdr["state"]) == 1 ? true : false;
                     //se agrega el usuario a la lista
+                    Person p = getPerson(user.Id);
+                    user.Surname = p.Surname;
+                    user.Name = p.Name;
+                    user.Email = p.Email;
+                    user.Phone = p.Phone;
+                    user.Birthdate = p.Birthdate;
                     users.Add(user);
                 }
                 //cierra la conexion;
@@ -186,13 +198,19 @@ namespace app_papeleriaSyS.Users.Repository
                 if (rdr.Read())
                 {
                     User user = new User();
-                    user.Id = (int)rdr["Id"];
+                    user.Id = (BigInteger)rdr["Id"];
                     user.Username = (string)rdr["username"];
                     user.Password = (string)rdr["password"];
                     user.TypeUser = (string)rdr["typeUser"];
                     user.State = ((int)rdr["state"]) == 1 ? true : false;
                     conn.Close();
                     rdr.Close();
+                    Person p=getPerson(user.Id);
+                    user.Surname = p.Surname;
+                    user.Name= p.Name;
+                    user.Email= p.Email;
+                    user.Phone = p.Phone;
+                    user.Birthdate = p.Birthdate;
                     return user;
                 }
                 return null;
@@ -226,5 +244,13 @@ namespace app_papeleriaSyS.Users.Repository
 
         }
 
+
+        private Person getPerson(BigInteger id)
+        {
+            RepositoryPerson repositoryPerson = new RepositoryPerson();
+            return repositoryPerson.viewPerson(id);
+
+        }
     }
+     
 }

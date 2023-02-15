@@ -6,10 +6,11 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Numerics;
 
 namespace app_papeleriaSyS.Customers.Repository
 {
-    internal class RepositoryCustomer
+     class RepositoryCustomer
     {
         private SqlConnection conn;
         private SqlCommand cmd;
@@ -104,7 +105,7 @@ namespace app_papeleriaSyS.Customers.Repository
                 {
                     //  Crea un nuevo usuario y asigna lo datos del registro
                     Customer customer = new Customer();
-                    customer.Nit = (int)rdr["nit"];
+                    customer.Nit = (BigInteger)rdr["nit"];
                     customer.Name = (string)rdr["Name"];
                     customer.Email = (string)rdr["email"];
                     customer.PhoneNumber = (int)rdr["phoneNumber"];
@@ -143,7 +144,7 @@ namespace app_papeleriaSyS.Customers.Repository
                 {
                     //  Crea un nuevo usuario y asigna lo datos del registro
                     Customer customer = new Customer();
-                    customer.Nit = (int)rdr["nit"];
+                    customer.Nit = (BigInteger)rdr["nit"];
                     customer.Name = (string)rdr["Name"];
                     customer.Email = (string)rdr["email"];
                     customer.PhoneNumber = (int)rdr["phoneNumber"];
@@ -164,7 +165,7 @@ namespace app_papeleriaSyS.Customers.Repository
 
 
         }
-        public Customer viewCustomer(int nit)
+        public Customer viewCustomer(BigInteger nit)
         {
             string query = "viewCustomer";
             try
@@ -177,7 +178,7 @@ namespace app_papeleriaSyS.Customers.Repository
                 if (rdr.Read())
                 {
                     Customer customer = new Customer();
-                    customer.Nit = (int)rdr["nit"];
+                    customer.Nit = (BigInteger)rdr["nit"];
                     customer.Name = (string)rdr["Name"];
                     customer.Email = (string)rdr["email"];
                     customer.PhoneNumber = (int)rdr["phoneNumber"];
@@ -192,7 +193,7 @@ namespace app_papeleriaSyS.Customers.Repository
         }
 
 
-        public bool deleteCustomer(int nit)
+        public bool deleteCustomer(BigInteger nit)
         {
             string query = "deleteCustomer";
             try

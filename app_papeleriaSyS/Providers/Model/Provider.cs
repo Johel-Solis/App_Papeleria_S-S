@@ -1,14 +1,16 @@
-﻿namespace app_papeleriaSyS.Providers.Model
+﻿using System.Numerics;
+
+namespace app_papeleriaSyS.Providers.Model
 {
-    internal class Provider
+     class Provider
     {
         #region attribute 
-        private int nit;
+        private BigInteger nit;
         private string name;
         private string email;
-        private int phoneNumber;
+        private BigInteger phoneNumber;
         private string bank;
-        private int accountNumber;
+        private BigInteger accountNumber;
         private bool state;
 
         #endregion
@@ -17,7 +19,7 @@
         {
         }
 
-        public Provider(int nit, string name, string email, int phoneNumber, string bank, int accountNumber, bool state)
+        public Provider(BigInteger nit, string name, string email, BigInteger phoneNumber, string bank, BigInteger accountNumber, bool state)
         {
             this.nit = nit;
             this.name = name;
@@ -35,12 +37,12 @@
         #endregion
 
         #region getter an setter
-        public int Nit { get => nit; set => nit = value; }
+        public BigInteger Nit { get => nit; set => nit = value; }
         public string Name { get => name; set => name = value; }
         public string Email { get => email; set => email = value; }
-        public int PhoneNumber { get => phoneNumber; set => phoneNumber = value; }
+        public BigInteger PhoneNumber { get => phoneNumber; set => phoneNumber = value; }
         public string Bank { get => bank; set => bank = value; }
-        public int AccountNumber { get => accountNumber; set => accountNumber = value; }
+        public BigInteger AccountNumber { get => accountNumber; set => accountNumber = value; }
         public bool State { get => state; set => state = value; }
         #endregion
     }

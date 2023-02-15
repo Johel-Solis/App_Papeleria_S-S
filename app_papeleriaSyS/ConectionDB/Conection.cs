@@ -1,6 +1,6 @@
 ﻿namespace app_papeleriaSyS.ConectionDB
 {
-    internal class Conection
+     public class Conection
     {
 
 

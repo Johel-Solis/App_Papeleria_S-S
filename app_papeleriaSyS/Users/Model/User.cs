@@ -1,6 +1,6 @@
 ﻿namespace app_papeleriaSyS.Users.Model
 {
-    internal class User : Person
+    public class User : Person
     {
         #region attributes
         private string username;

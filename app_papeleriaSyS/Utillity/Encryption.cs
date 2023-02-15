@@ -4,7 +4,7 @@ using System.Text;
 
 namespace app_papeleriaSyS.Utillity
 {
-    internal class Encryption
+    public class Encryption
     {
 
 

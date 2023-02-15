@@ -1,11 +1,13 @@
-﻿namespace app_papeleriaSyS.Customers.Model
+﻿using System.Numerics;
+
+namespace app_papeleriaSyS.Customers.Model
 {
-    internal class Customer
+     class Customer
     {
         #region attribute 
-        private  int nit;
+        private  BigInteger nit;
         private string name;
-        private int phoneNumber;
+        private BigInteger phoneNumber;
         private string email;
         private bool state;
 
@@ -16,7 +18,7 @@
         {
         }
 
-        public Customer(int nit, string name, int phoneNumber, string email, bool state)
+        public Customer(BigInteger nit, string name, BigInteger phoneNumber, string email, bool state)
         {
             this.Nit = nit;
             this.Name = name;
@@ -29,10 +31,10 @@
         #region getter and setter
       
         public string Name { get => name; set => name = value; }
-        public int PhoneNumber { get => phoneNumber; set => phoneNumber = value; }
+        public BigInteger PhoneNumber { get => phoneNumber; set => phoneNumber = value; }
         public string Email { get => email; set => email = value; }
         public bool State { get => state; set => state = value; }
-        public int Nit { get => nit; set => nit = value; }
+        public BigInteger Nit { get => nit; set => nit = value; }
         #endregion
 
 

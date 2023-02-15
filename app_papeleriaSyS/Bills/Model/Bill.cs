@@ -2,14 +2,14 @@
 using app_papeleriaSyS.Users.Model;
 using System;
 using System.Collections.Generic;
-
+using System.Numerics;
 
 namespace app_papeleriaSyS.Bills.Model
 {
-    internal class Bill
+    class Bill
     {
         #region attribute
-        private int id;
+        private BigInteger id;
         private User seller;
         private Customer customer;
         private float total;
@@ -22,7 +22,7 @@ namespace app_papeleriaSyS.Bills.Model
         {
         }
 
-        public Bill(int id, User seller, Customer customer, float total, bool state, DateTime billdate, List<SaleDetail> saledetail)
+        public Bill(BigInteger id, User seller, Customer customer, float total, bool state, DateTime billdate, List<SaleDetail> saledetail)
         {
             this.Id = id;
             this.Seller = seller;
@@ -34,7 +34,7 @@ namespace app_papeleriaSyS.Bills.Model
         }
         #endregion
         #region getter and setter
-        public int Id { get => id; set => id = value; }
+        public BigInteger Id { get => id; set => id = value; }
         public float Total { get => total; set => total = value; }
         public bool State { get => state; set => state = value; }
         public DateTime Billdate { get => billdate; set => billdate = value; }

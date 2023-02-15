@@ -8,10 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using app_papeleriaSyS.Providers.Model;
 using app_papeleriaSyS.Providers.Repository;
+using System.Numerics;
 
 namespace app_papeleriaSyS.Products.Repository
 {
-    internal class RepositoryProduct
+     class RepositoryProduct
     {
         private SqlConnection conn;
         private SqlCommand cmd;
@@ -114,7 +115,7 @@ namespace app_papeleriaSyS.Products.Repository
                 {
                     //  Crea un nuevo usuario y asigna lo datos del registro
                     Product product = new Product();
-                    product.IdProduct = (int)rdr["reference"];
+                    product.IdProduct = (BigInteger)rdr["reference"];
                     product.Name = (string)rdr["name"];
                     product.Description = (string)rdr["description"];
                     product.Purchase_price = (float)rdr["purchase´_price"];
@@ -122,7 +123,7 @@ namespace app_papeleriaSyS.Products.Repository
                     product.Stock = (int)rdr["stock"];
                     product.Brand = (string)rdr["brand"];
                     product.Category = GetCategory((int)rdr["category_id"]);
-                    product.Provider = getPorvider((int)rdr["provider_id"]);
+                    product.Provider = getPorvider((BigInteger)rdr["provider_id"]);
                     product.State = ((int)rdr["state"]) == 1 ? true : false;
                     products.Add(product);
                 }
@@ -158,7 +159,7 @@ namespace app_papeleriaSyS.Products.Repository
                     //  Crea un nuevo usuario y asigna lo datos del registro
                     
                     Product product = new Product();
-                    product.IdProduct = (int)rdr["reference"];
+                    product.IdProduct = (BigInteger)rdr["reference"];
                     product.Name = (string)rdr["name"];
                     product.Description = (string)rdr["description"];
                     product.Purchase_price = (float)rdr["purchase´_price"];
@@ -166,7 +167,7 @@ namespace app_papeleriaSyS.Products.Repository
                     product.Stock = (int)rdr["stock"];
                     product.Brand = (string)rdr["brand"];
                     product.Category = GetCategory((int)rdr["category_id"]);
-                    product.Provider = getPorvider((int)rdr["provider_id"]);
+                    product.Provider = getPorvider((BigInteger)rdr["provider_id"]);
                     product.State = ((int)rdr["state"]) == 1 ? true : false;
                     products.Add(product);
                 }
@@ -181,7 +182,7 @@ namespace app_papeleriaSyS.Products.Repository
 
 
         }
-        public Product viewProduct(int reference)
+        public Product viewProduct(BigInteger reference)
         {
             string query = "viewProduct";
             try
@@ -195,7 +196,7 @@ namespace app_papeleriaSyS.Products.Repository
                 if (rdr.Read())
                 {
                     Product product = new Product();
-                    product.IdProduct = (int)rdr["reference"];
+                    product.IdProduct = (BigInteger)rdr["reference"];
                     product.Name = (string)rdr["name"];
                     product.Description = (string)rdr["description"];
                     product.Purchase_price = (float)rdr["purchase´_price"];
@@ -204,7 +205,7 @@ namespace app_papeleriaSyS.Products.Repository
                     product.Brand = (string)rdr["brand"];
 
                     product.Category = GetCategory((int)rdr["category_id"]);
-                    product.Provider = getPorvider((int)rdr["provider_id"]);
+                    product.Provider = getPorvider((BigInteger)rdr["provider_id"]);
                     product.State = ((int)rdr["state"]) == 1 ? true : false;
                     rdr.Close();
                     return product;
@@ -217,7 +218,7 @@ namespace app_papeleriaSyS.Products.Repository
 
         }
 
-        public bool deleteProduct(int reference)
+        public bool deleteProduct(BigInteger reference)
         {
             string query = "deleteProduct";
             try
@@ -245,7 +246,7 @@ namespace app_papeleriaSyS.Products.Repository
 
         }
 
-        private Provider getPorvider(int nit)
+        private Provider getPorvider(BigInteger nit)
         {
             RepositoryProvider repositoryProvider= new RepositoryProvider();
             return repositoryProvider.viewProvider(nit);

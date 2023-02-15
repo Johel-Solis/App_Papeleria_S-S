@@ -1,6 +1,6 @@
 ﻿namespace app_papeleriaSyS.Products.Model
 {
-    internal class Category
+     class Category
     {
         #region attribute 
         private int id;

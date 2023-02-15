@@ -1,24 +1,24 @@
 ﻿using System;
+using System.Numerics;
 
 namespace app_papeleriaSyS.Users.Model
 {
-    internal class Person
+    public class Person
     {
         #region attributes
-        private int id;
+        private BigInteger id;
         private string name;
         private string surname;
         private string email;
-        private int phone;
+        private BigInteger phone;
         private DateTime birthdate;
         #endregion
         #region constructor
         public Person()
         {
             this.Email = "";
-            this.Birthdate = "";
         }
-        public Person(int id, string name, string surname, int phone)
+        public Person(BigInteger id, string name, string surname, BigInteger phone)
         {
             Id = id;
             Name = name;
@@ -28,11 +28,11 @@ namespace app_papeleriaSyS.Users.Model
         }
         #endregion
         #region getter and setter
-        public int Id { get => id; set => id = value; }
+        public BigInteger Id { get => id; set => id = value; }
         public string Name { get => name; set => name = value; }
         public string Surname { get => surname; set => surname = value; }
         public string Email { get => email; set => email = value; }
-        public int Phone { get => phone; set => phone = value; }
+        public BigInteger Phone { get => phone; set => phone = value; }
         public DateTime Birthdate { get => birthdate; set => birthdate = value; }
         #endregion
     }
